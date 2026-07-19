@@ -2,36 +2,43 @@
 (function () {
   "use strict";
 
-  /* ---------- GDPR Consent Management ---------- */
   var GTM_ID = document.documentElement.getAttribute("data-gtm");
-  var consentVersion = 1;
+  var CONSENT_VERSION = 1;
+  var CONSENT_KEY = "eg-coffee-consent-v" + CONSENT_VERSION;
 
-  // Determine current language from page path
-  var currentLang = window.location.pathname.startsWith("/en/") ? "en" :
-                    window.location.pathname.startsWith("/nl/") ? "nl" : "fr";
+  // Detect current language
+  function getCurrentLang() {
+    if (window.location.pathname.startsWith("/en/")) return "en";
+    if (window.location.pathname.startsWith("/nl/")) return "nl";
+    return "fr";
+  }
 
-  // Store references in outer scope
-  var consentBox = null;
-  var prefsModal = null;
-
-  function getConsent() {
-    var stored = null;
-    try { stored = localStorage.getItem("eg-coffee-consent-v" + consentVersion); } catch (e) {}
-    if (stored) {
-      try { return JSON.parse(stored); } catch (e) { return null; }
-    }
+  // Get stored consent
+  function getStoredConsent() {
+    try {
+      var stored = localStorage.getItem(CONSENT_KEY);
+      if (stored) return JSON.parse(stored);
+    } catch (e) {}
     return null;
   }
 
-  function setConsent(obj) {
-    obj.version = consentVersion;
-    obj.timestamp = new Date().toISOString();
-    try { localStorage.setItem("eg-coffee-consent-v" + consentVersion, JSON.stringify(obj)); } catch (e) {}
+  // Save consent
+  function saveConsent(analytics, marketing) {
+    var obj = {
+      necessary: true,
+      analytics: !!analytics,
+      marketing: !!marketing,
+      version: CONSENT_VERSION,
+      timestamp: new Date().toISOString()
+    };
+    try {
+      localStorage.setItem(CONSENT_KEY, JSON.stringify(obj));
+    } catch (e) {}
     applyConsent(obj);
   }
 
+  // Apply consent (push to GTM dataLayer)
   function applyConsent(consent) {
-    // Push consent state to dataLayer for GTM
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: "consent_update",
@@ -41,124 +48,110 @@
       }
     });
 
-    // Load GTM only if analytics OR marketing is granted
+    // Load GTM if enabled
     if ((consent.analytics || consent.marketing) && GTM_ID && GTM_ID.indexOf("GTM-") === 0 && GTM_ID !== "GTM-XXXXXXX") {
       if (!window.gtmLoaded) {
         window.gtmLoaded = true;
-        var s = document.createElement("script");
-        s.async = true;
-        s.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_ID;
-        document.head.appendChild(s);
+        var script = document.createElement("script");
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_ID;
+        document.head.appendChild(script);
       }
     }
   }
 
-  function openPreferencesModal() {
-    if (!prefsModal) return;
-    var consent = getConsent() || { necessary: true, analytics: true, marketing: true };
-    var analyticsChk = document.querySelector("[data-pref-analytics]");
-    var marketingChk = document.querySelector("[data-pref-marketing]");
-    if (analyticsChk) analyticsChk.checked = consent.analytics;
-    if (marketingChk) marketingChk.checked = consent.marketing;
-    prefsModal.hidden = false;
-  }
+  // Initialize on DOM ready
+  function init() {
+    var banner = document.querySelector(".consent");
+    var modal = document.querySelector(".consent-preferences-modal");
 
-  function closePreferencesModal() {
-    if (prefsModal) prefsModal.hidden = true;
-  }
+    if (!banner) return;
 
-  // Initialize consent banner
-  function initConsent() {
-    consentBox = document.querySelector(".consent");
-    prefsModal = document.querySelector(".consent-preferences-modal");
-    if (!consentBox) return;
-
-    // Show banner if no prior consent
-    var storedConsent = getConsent();
-    if (!storedConsent || storedConsent.version !== consentVersion) {
-      consentBox.hidden = false;
+    // Show banner only if no consent stored
+    var stored = getStoredConsent();
+    if (!stored || stored.version !== CONSENT_VERSION) {
+      banner.hidden = false;
     }
 
-    // Mark active language in consent language switcher
-    var consentLangLinks = consentBox.querySelectorAll("[data-lang]");
-    consentLangLinks.forEach(function (link) {
+    // Mark active language
+    var currentLang = getCurrentLang();
+    banner.querySelectorAll("[data-lang]").forEach(function(link) {
       if (link.getAttribute("data-lang") === currentLang) {
         link.classList.add("active");
-      } else {
-        link.classList.remove("active");
       }
     });
 
-    // Set up banner button handlers
-    var acceptAllBtn = consentBox.querySelector(".btn-solid[data-consent='accept-all']");
-    var rejectAllBtn = consentBox.querySelector(".btn-line[data-consent='reject-all']");
-    var prefsBtn = consentBox.querySelector(".btn-line[data-consent='preferences']");
-
-    if (acceptAllBtn) {
-      acceptAllBtn.onclick = function() {
-        setConsent({ necessary: true, analytics: true, marketing: true });
-        consentBox.hidden = true;
-        return false;
-      };
+    // Banner: Accept All
+    var acceptBtn = banner.querySelector('[data-consent="accept-all"]');
+    if (acceptBtn) {
+      acceptBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        saveConsent(true, true);
+        banner.hidden = true;
+      }, false);
     }
 
-    if (rejectAllBtn) {
-      rejectAllBtn.onclick = function() {
-        setConsent({ necessary: true, analytics: false, marketing: false });
-        consentBox.hidden = true;
-        return false;
-      };
+    // Banner: Reject All
+    var rejectBtn = banner.querySelector('[data-consent="reject-all"]');
+    if (rejectBtn) {
+      rejectBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        saveConsent(false, false);
+        banner.hidden = true;
+      }, false);
     }
 
-    if (prefsBtn) {
-      prefsBtn.onclick = function() {
-        openPreferencesModal();
-        return false;
-      };
+    // Banner: Manage Preferences
+    var manageBtn = banner.querySelector('[data-consent="preferences"]');
+    if (manageBtn && modal) {
+      manageBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var s = getStoredConsent() || { analytics: true, marketing: true };
+        var analyticsCheckbox = document.querySelector("[data-pref-analytics]");
+        var marketingCheckbox = document.querySelector("[data-pref-marketing]");
+        if (analyticsCheckbox) analyticsCheckbox.checked = s.analytics;
+        if (marketingCheckbox) marketingCheckbox.checked = s.marketing;
+        modal.hidden = false;
+      }, false);
     }
 
-    // Set up preferences modal save button
-    var savePrefsBtn = document.querySelector("[data-save-prefs]");
-    if (savePrefsBtn) {
-      savePrefsBtn.onclick = function() {
+    // Modal: Save Preferences
+    var saveBtn = document.querySelector('[data-save-prefs]');
+    if (saveBtn) {
+      saveBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
         var analytics = document.querySelector("[data-pref-analytics]");
         var marketing = document.querySelector("[data-pref-marketing]");
-        setConsent({
-          necessary: true,
-          analytics: analytics && analytics.checked,
-          marketing: marketing && marketing.checked
-        });
-        closePreferencesModal();
-        consentBox.hidden = true;
-        return false;
-      };
+        saveConsent(analytics && analytics.checked, marketing && marketing.checked);
+        if (modal) modal.hidden = true;
+        banner.hidden = true;
+      }, false);
     }
 
-    // Prevent closing modal via overlay or close button
-    var prefsOverlay = document.querySelector(".consent-prefs-overlay");
-    if (prefsOverlay) {
-      prefsOverlay.onclick = function() {
-        return false;
-      };
+    // Modal: Prevent closing via overlay
+    var overlay = document.querySelector(".consent-prefs-overlay");
+    if (overlay) {
+      overlay.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }, false);
     }
 
-    var closePrefsBtn = document.querySelector("[data-close-prefs]");
-    if (closePrefsBtn) {
-      closePrefsBtn.style.display = "none";
+    // Apply existing consent immediately
+    if (stored) {
+      applyConsent(stored);
     }
   }
 
-  // Apply stored consent immediately if exists
-  var storedConsent = getConsent();
-  if (storedConsent) {
-    applyConsent(storedConsent);
-  }
-
-  // Wait for DOM, then init consent
+  // Wait for DOM
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initConsent);
+    document.addEventListener("DOMContentLoaded", init, false);
   } else {
-    initConsent();
+    init();
   }
 
   // Preferences modal (if it exists)
