@@ -10,6 +10,10 @@
   var currentLang = window.location.pathname.startsWith("/en/") ? "en" :
                     window.location.pathname.startsWith("/nl/") ? "nl" : "fr";
 
+  // Store references in outer scope
+  var consentBox = null;
+  var prefsModal = null;
+
   function getConsent() {
     var stored = null;
     try { stored = localStorage.getItem("eg-coffee-consent-v" + consentVersion); } catch (e) {}
@@ -49,9 +53,24 @@
     }
   }
 
+  function openPreferencesModal() {
+    if (!prefsModal) return;
+    var consent = getConsent() || { necessary: true, analytics: true, marketing: true };
+    var analyticsChk = document.querySelector("[data-pref-analytics]");
+    var marketingChk = document.querySelector("[data-pref-marketing]");
+    if (analyticsChk) analyticsChk.checked = consent.analytics;
+    if (marketingChk) marketingChk.checked = consent.marketing;
+    prefsModal.hidden = false;
+  }
+
+  function closePreferencesModal() {
+    if (prefsModal) prefsModal.hidden = true;
+  }
+
   // Initialize consent banner
   function initConsent() {
-    var consentBox = document.querySelector(".consent");
+    consentBox = document.querySelector(".consent");
+    prefsModal = document.querySelector(".consent-preferences-modal");
     if (!consentBox) return;
 
     // Show banner if no prior consent
@@ -70,10 +89,10 @@
       }
     });
 
-    // Set up button handlers
+    // Set up banner button handlers
     var acceptAllBtn = consentBox.querySelector(".btn-solid[data-consent='accept-all']");
-    var rejectAllBtn = document.querySelector(".btn-line[data-consent='reject-all']");
-    var prefsBtn = document.querySelector(".btn-line[data-consent='preferences']");
+    var rejectAllBtn = consentBox.querySelector(".btn-line[data-consent='reject-all']");
+    var prefsBtn = consentBox.querySelector(".btn-line[data-consent='preferences']");
 
     if (acceptAllBtn) {
       acceptAllBtn.onclick = function() {
@@ -96,6 +115,36 @@
         openPreferencesModal();
         return false;
       };
+    }
+
+    // Set up preferences modal save button
+    var savePrefsBtn = document.querySelector("[data-save-prefs]");
+    if (savePrefsBtn) {
+      savePrefsBtn.onclick = function() {
+        var analytics = document.querySelector("[data-pref-analytics]");
+        var marketing = document.querySelector("[data-pref-marketing]");
+        setConsent({
+          necessary: true,
+          analytics: analytics && analytics.checked,
+          marketing: marketing && marketing.checked
+        });
+        closePreferencesModal();
+        consentBox.hidden = true;
+        return false;
+      };
+    }
+
+    // Prevent closing modal via overlay or close button
+    var prefsOverlay = document.querySelector(".consent-prefs-overlay");
+    if (prefsOverlay) {
+      prefsOverlay.onclick = function() {
+        return false;
+      };
+    }
+
+    var closePrefsBtn = document.querySelector("[data-close-prefs]");
+    if (closePrefsBtn) {
+      closePrefsBtn.style.display = "none";
     }
   }
 
