@@ -1,0 +1,151 @@
+name: Deploy to GitHub Pages (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_type:
+        description: 'Deploy from branch or specific commit?'
+        required: true
+        default: 'branch'
+        type: choice
+        options:
+          - branch
+          - commit
+      source_branch:
+        description: 'Source branch to deploy from (if deploy_type = branch)'
+        required: false
+        default: 'main'
+        type: choice
+        options:
+          - main
+          - dev
+      commit_sha:
+        description: 'Specific commit SHA to deploy (if deploy_type = commit, e.g., abc1234 or full hash)'
+        required: false
+        type: string
+      regenerate:
+        description: 'Regenerate HTML from translations.json? (run build.py)'
+        required: false
+        default: 'no'
+        type: choice
+        options:
+          - 'yes'
+          - 'no'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.deploy_type == 'commit' && inputs.commit_sha || inputs.source_branch }}
+          fetch-depth: 0
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: 🔄 Regenerate HTML (optional)
+        if: ${{ inputs.regenerate == 'yes' }}
+        run: |
+          echo "=== Regenerating HTML from translations.json ==="
+          cd build
+          python3 build.py
+          echo "✅ HTML regenerated successfully"
+          cd ..
+
+      - name: 📊 Generate deployment report
+        id: deployment_report
+        run: |
+          # Get current commit info
+          COMMIT_SHA=$(git rev-parse HEAD)
+          COMMIT_SHORT=$(git rev-parse --short HEAD)
+          COMMIT_MSG=$(git log -1 --pretty=%B | head -1)
+          COMMIT_AUTHOR=$(git log -1 --pretty=%an)
+
+          echo "=== Deployment Report ===" > deployment-report.txt
+          echo "" >> deployment-report.txt
+          echo "Deploy Type: ${{ inputs.deploy_type }}" >> deployment-report.txt
+          if [ "${{ inputs.deploy_type }}" == "branch" ]; then
+            echo "Source Branch: ${{ inputs.source_branch }}" >> deployment-report.txt
+          else
+            echo "Source Commit: ${{ inputs.commit_sha }}" >> deployment-report.txt
+          fi
+          echo "Deployed Commit: $COMMIT_SHORT ($COMMIT_MSG)" >> deployment-report.txt
+          echo "Commit Author: $COMMIT_AUTHOR" >> deployment-report.txt
+          echo "Target Branch: main (GitHub Pages)" >> deployment-report.txt
+          echo "Deployed at: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> deployment-report.txt
+          echo "Regenerated HTML: ${{ inputs.regenerate }}" >> deployment-report.txt
+          echo "" >> deployment-report.txt
+          echo "=== File Summary ===" >> deployment-report.txt
+          echo "Total HTML pages: $(find . -name '*.html' | grep -v node_modules | wc -l)" >> deployment-report.txt
+          echo "CSS files: $(find ./css -name '*.css' 2>/dev/null | wc -l)" >> deployment-report.txt
+          echo "JS files: $(find ./js -name '*.js' 2>/dev/null | wc -l)" >> deployment-report.txt
+          echo "Media files: $(find ./media -type f 2>/dev/null | wc -l)" >> deployment-report.txt
+
+          cat deployment-report.txt
+          cat deployment-report.txt >> $GITHUB_STEP_SUMMARY
+
+      - name: 🚀 Configure Git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: 📝 Commit deployment
+        run: |
+          # Only commit if there are changes
+          if [ -n "$(git status --short)" ]; then
+            echo "=== Committing changes ==="
+            git add -A
+
+            # Build commit message
+            echo "🚀 Deploy to GitHub Pages" > commit-msg.txt
+            echo "" >> commit-msg.txt
+            cat deployment-report.txt >> commit-msg.txt
+            echo "" >> commit-msg.txt
+            if [ "${{ inputs.deploy_type }}" == "branch" ]; then
+              echo "Source: ${{ inputs.source_branch }} branch" >> commit-msg.txt
+            else
+              echo "Source: commit ${{ inputs.commit_sha }}" >> commit-msg.txt
+            fi
+            echo "Deployed by: @${{ github.actor }}" >> commit-msg.txt
+
+            # Commit with the message file
+            git commit -F commit-msg.txt
+
+            echo "✅ Changes committed"
+          else
+            echo "✅ No changes to commit (already up-to-date)"
+          fi
+
+      - name: 📤 Push to main branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Check if we have commits to push
+          if [ "$(git rev-list --count origin/main..HEAD)" -gt 0 ]; then
+            echo "📤 Pushing changes to main..."
+            git push origin HEAD:main
+          else
+            echo "✅ Already up-to-date with origin/main"
+          fi
+
+          echo ""
+          echo "🌐 Site is live at: https://coffee.evasiongusto.be"
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## ✅ Deployment Complete!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🌐 **Branch**: main (GitHub Pages)" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ inputs.deploy_type }}" == "branch" ]; then
+            echo "📦 **Source**: ${{ inputs.source_branch }}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "📦 **Source**: commit ${{ inputs.commit_sha }}" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "👤 **Deployed by**: @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "🌍 **Live URL**: https://coffee.evasiongusto.be" >> $GITHUB_STEP_SUMMARY
