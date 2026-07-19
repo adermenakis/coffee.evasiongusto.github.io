@@ -4,21 +4,11 @@
 
   /* ---------- GDPR Consent Management ---------- */
   var GTM_ID = document.documentElement.getAttribute("data-gtm");
-  var consentBox = document.querySelector(".consent");
   var consentVersion = 1;
 
   // Determine current language from page path
   var currentLang = window.location.pathname.startsWith("/en/") ? "en" :
                     window.location.pathname.startsWith("/nl/") ? "nl" : "fr";
-
-  // Default: all disabled until user accepts
-  var defaultConsent = {
-    necessary: true,     // always on (for tracking consent itself, security)
-    analytics: true,     // all pre-enabled for simplicity
-    marketing: true,
-    version: consentVersion,
-    timestamp: new Date().toISOString()
-  };
 
   function getConsent() {
     var stored = null;
@@ -26,7 +16,7 @@
     if (stored) {
       try { return JSON.parse(stored); } catch (e) { return null; }
     }
-    return null; // no explicit choice made yet
+    return null;
   }
 
   function setConsent(obj) {
@@ -46,7 +36,7 @@
         ad_storage: consent.marketing ? "granted" : "denied"
       }
     });
-    
+
     // Load GTM only if analytics OR marketing is granted
     if ((consent.analytics || consent.marketing) && GTM_ID && GTM_ID.indexOf("GTM-") === 0 && GTM_ID !== "GTM-XXXXXXX") {
       if (!window.gtmLoaded) {
@@ -59,46 +49,67 @@
     }
   }
 
-  // Show banner if no prior consent
-  var storedConsent = getConsent();
-  if (!storedConsent || storedConsent.version !== consentVersion) {
-    if (consentBox) consentBox.hidden = false;
-  }
+  // Initialize consent banner
+  function initConsent() {
+    var consentBox = document.querySelector(".consent");
+    if (!consentBox) return;
 
-  // Mark active language in consent language switcher
-  var consentLangLinks = consentBox ? consentBox.querySelectorAll("[data-lang]") : [];
-  consentLangLinks.forEach(function (link) {
-    if (link.getAttribute("data-lang") === currentLang) {
-      link.classList.add("active");
-    } else {
-      link.classList.remove("active");
+    // Show banner if no prior consent
+    var storedConsent = getConsent();
+    if (!storedConsent || storedConsent.version !== consentVersion) {
+      consentBox.hidden = false;
     }
-  });
 
-  // Banner interactions: accept all, reject all, manage preferences
-  if (consentBox) {
-    // Direct button click handlers for better reliability
-    var acceptBtn = consentBox.querySelector("[data-consent='accept-all']");
-    var rejectBtn = consentBox.querySelector("[data-consent='reject-all']");
-    var prefsBtn = consentBox.querySelector("[data-consent='preferences']");
+    // Mark active language in consent language switcher
+    var consentLangLinks = consentBox.querySelectorAll("[data-lang]");
+    consentLangLinks.forEach(function (link) {
+      if (link.getAttribute("data-lang") === currentLang) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
 
-    if (acceptBtn) {
-      acceptBtn.addEventListener("click", function () {
+    // Set up button handlers
+    var acceptAllBtn = consentBox.querySelector(".btn-solid[data-consent='accept-all']");
+    var rejectAllBtn = document.querySelector(".btn-line[data-consent='reject-all']");
+    var prefsBtn = document.querySelector(".btn-line[data-consent='preferences']");
+
+    if (acceptAllBtn) {
+      acceptAllBtn.onclick = function() {
         setConsent({ necessary: true, analytics: true, marketing: true });
         consentBox.hidden = true;
-      });
+        return false;
+      };
     }
-    if (rejectBtn) {
-      rejectBtn.addEventListener("click", function () {
+
+    if (rejectAllBtn) {
+      rejectAllBtn.onclick = function() {
         setConsent({ necessary: true, analytics: false, marketing: false });
         consentBox.hidden = true;
-      });
+        return false;
+      };
     }
+
     if (prefsBtn) {
-      prefsBtn.addEventListener("click", function () {
+      prefsBtn.onclick = function() {
         openPreferencesModal();
-      });
+        return false;
+      };
     }
+  }
+
+  // Apply stored consent immediately if exists
+  var storedConsent = getConsent();
+  if (storedConsent) {
+    applyConsent(storedConsent);
+  }
+
+  // Wait for DOM, then init consent
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initConsent);
+  } else {
+    initConsent();
   }
 
   // Preferences modal (if it exists)
