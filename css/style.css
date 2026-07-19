@@ -80,17 +80,17 @@ em.accent{font-style:italic;color:var(--oak);font-weight:460}
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--hair);
 }
 .site-header.scrolled{border-bottom-color:var(--hair-strong)}
-.nav-wrap{display:flex;align-items:center;gap:1.5rem;min-height:100px}
-.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex:none}
-.brand-logo-text{display:flex;align-items:center;gap:.5rem}
-.brand img{width:80px;height:80px}
+.nav-wrap{display:flex;align-items:center;gap:1.5rem;min-height:160px;padding:1rem 0}
+.brand{display:flex;align-items:center;gap:.8rem;text-decoration:none;flex:none}
+.brand-logo-text{display:flex;align-items:center;gap:.6rem}
+.brand img{width:140px;height:140px}
 .brand-label{
   font-family:var(--font-display);font-style:italic;font-weight:460;
-  font-size:1.1rem;color:var(--oak);letter-spacing:.02em;white-space:nowrap;
+  font-size:1.3rem;color:var(--oak);letter-spacing:.02em;white-space:nowrap;
 }
 @media(max-width:768px){
-  .brand img{width:60px;height:60px}
-  .brand-label{font-size:.95rem}
+  .brand img{width:100px;height:100px}
+  .brand-label{font-size:1.1rem}
 }
 .main-nav{margin-left:auto}
 .main-nav ul{display:flex;gap:1.8rem;list-style:none;margin:0;padding:0;align-items:center}
@@ -102,6 +102,9 @@ em.accent{font-style:italic;color:var(--oak);font-weight:460}
 .main-nav a:hover{border-color:var(--noir)}
 .main-nav .nav-cta{border:1px solid var(--noir);padding:.55rem 1.1rem}
 .main-nav .nav-cta:hover{background:var(--noir);color:var(--white)}
+@media(max-width:900px){
+  .main-nav .nav-cta{display:block;margin-top:1rem;width:100%;text-align:center;padding:.75rem 1rem}
+}
 .lang-switch{display:flex;align-items:center;gap:.5rem;color:var(--muted);font-size:.8rem}
 .lang-switch .lang{color:var(--muted);text-decoration:none;font-weight:500;padding:.2rem .1rem;letter-spacing:.08em}
 .lang-switch .lang:hover{color:var(--noir)}
@@ -383,7 +386,7 @@ footer [data-open-prefs]{font-size:.92rem}
   .brew{width:min(230px,68vw)}
   .lang-switch{margin-left:auto}
   .main-nav{
-    position:fixed;inset:100px 0 auto 0;background:var(--white);margin:0;
+    position:fixed;inset:160px 0 auto 0;background:var(--white);margin:0;
     transform:translateY(-130%);transition:transform .3s ease;border-bottom:1px solid var(--hair-strong);
   }
   .main-nav.open{transform:none}
