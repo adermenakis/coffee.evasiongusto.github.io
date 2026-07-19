@@ -1,0 +1,29 @@
+# Évasion Gusto Coffee
+
+> Barista courses on a Victoria Arduino Prima Pro (single group) and specialty
+> coffee sales in Beaumont, Belgium — near Mons, Charleroi and NATO SHAPE.
+> The coffee arm of Évasion Gusto, a catering company (https://www.evasiongusto.be).
+
+Languages: French (default, /), English (/en/), Dutch (/nl/).
+
+## Courses (small groups, max 4 people, all equipment provided)
+- Mastering Espresso — 3 h — €149/person: grind, dose, distribution, tamping,
+  extraction recipes, dialing in, milk texturing and latte art basics.
+- Water, Espresso & Filter Coffee — 4 h — €169/person: water chemistry
+  (TDS, hardness, alkalinity), building brew water, V60 and batch brew,
+  comparative tastings.
+
+## Specialty coffee
+Rotating selection of whole-bean specialty coffees in 250 g bags
+(e.g. Ethiopia, Colombia, Brazil, decaf), pick-up in Beaumont or at a course.
+
+## Contact & booking
+- Form: https://coffee.evasiongusto.be/#contact
+- WhatsApp: https://wa.me/32480658012
+- Email: info@evasiongusto.be
+- Address: Rue Orger Meurice 12, 6500 Beaumont, Belgium
+
+## Pages
+- [Home / Courses / Coffees / FAQ (FR)](https://coffee.evasiongusto.be/)
+- [English](https://coffee.evasiongusto.be/en/)
+- [Nederlands](https://coffee.evasiongusto.be/nl/)

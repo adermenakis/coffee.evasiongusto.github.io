@@ -1,0 +1,684 @@
+{
+  "site": {
+    "domain": "https://coffee.evasiongusto.be",
+    "gtm_id": "GTM-XXXXXXX",
+    "formspree": "https://formspree.io/f/YOUR_FORM_ID",
+    "whatsapp": "https://wa.me/32480658012",
+    "phone_display": "+32 (0) 480 65 80 12",
+    "phone_link": "tel:+32480658012",
+    "email": "info@evasiongusto.be",
+    "address": "Rue Orger Meurice 12, 6500 Beaumont, Belgique",
+    "logo": "https://evasiongusto.be/images/logo-nobackground.svg",
+    "og_image": "https://www.evasiongusto.be/images/og-image.jpg",
+    "vat": "BE 1009.024.385",
+    "hero_video": "/media/hero.mp4",
+    "hero_poster": "",
+    "banner_image": "/images/banner.jpg",
+    "calcom_username": "YOUR_CALCOM_USERNAME"
+  },
+  "langs": {
+    "fr": {
+      "path": "",
+      "html_lang": "fr",
+      "locale": "fr_BE",
+      "title": "Évasion Gusto Coffee — Cours Barista & Cafés de Spécialité | Beaumont, Mons",
+      "description": "Cours barista sur Victoria Arduino Prima Pro et cafés de spécialité à Beaumont, près de Mons et de l'OTAN SHAPE. Maîtrisez l'espresso, l'eau et le café filtre. Réservez votre atelier.",
+      "keywords": "cours barista, formation barista, café de spécialité, espresso, Victoria Arduino Prima Pro, café filtre, latte art, Beaumont, Mons, Charleroi, Hainaut, Belgique, Évasion Gusto, atelier café, torréfaction",
+      "nav": {
+        "courses": "Cours",
+        "machine": "La Machine",
+        "coffees": "Nos Cafés",
+        "faq": "FAQ",
+        "contact": "Réserver"
+      },
+      "hero": {
+        "eyebrow": "Formation barista & cafés de spécialité — Beaumont, près de Mons",
+        "title": "L'espresso, du geste *à la tasse*.",
+        "sub": "Des ateliers barista en petit groupe sur notre Victoria Arduino Prima Pro, et une sélection de cafés de spécialité à emporter chez vous. Par Évasion Gusto.",
+        "cta_courses": "Voir les cours",
+        "cta_book": "Réserver une place"
+      },
+      "courses_section": {
+        "eyebrow": "Nos ateliers",
+        "title": "Deux cours, un seul objectif : *une meilleure tasse*",
+        "intro": "Des sessions pratiques en petit groupe (4 personnes max.), machine en main du début à la fin. Chaque participant repart avec ses recettes d'extraction et un sachet de café de spécialité.",
+        "duration_label": "Durée",
+        "price_label": "Prix / pers.",
+        "group_label": "Groupe",
+        "book": "Réserver ce cours",
+        "per_person": "par personne",
+        "book_online": "Choisir une date"
+      },
+      "courses": [
+        {
+          "id": "espresso",
+          "icon": "portafilter",
+          "name": "Maîtriser l'Espresso",
+          "tagline": "Du grain au shot parfait",
+          "desc": "Mouture, dose, distribution, tassage et extraction : vous apprenez à régler un espresso de A à Z sur la Victoria Arduino Prima Pro. Lecture de la tasse, ajustement des recettes, textures de lait et bases du latte art.",
+          "points": [
+            "Réglage de la mouture et de la dose",
+            "Recettes d'extraction (ratio, temps, rendement)",
+            "Diagnostic : sous- et sur-extraction",
+            "Texture de lait et premiers motifs"
+          ],
+          "duration": "3 h",
+          "price": "149 €",
+          "group": "max. 4",
+          "calcom_event": "mastering-espresso"
+        },
+        {
+          "id": "water",
+          "icon": "drop",
+          "name": "L'Eau, l'Espresso & le Café Filtre",
+          "tagline": "98 % de votre tasse, enfin maîtrisés",
+          "desc": "L'eau fait ou défait un café. Minéralité, dureté, alcalinité : vous apprenez à composer une eau de brassage et à mesurer son impact réel, en espresso comme en filtre (V60, batch brew), dégustations comparatives à l'appui.",
+          "points": [
+            "Chimie de l'eau : TDS, dureté, alcalinité",
+            "Composer son eau de brassage",
+            "Méthodes filtre : V60 et batch brew",
+            "Dégustation comparative espresso / filtre"
+          ],
+          "duration": "4 h",
+          "price": "169 €",
+          "group": "max. 4",
+          "calcom_event": "water-espresso-filter"
+        }
+      ],
+      "machine": {
+        "eyebrow": "Notre machine",
+        "title": "Victoria Arduino *Prima Pro*",
+        "desc": "Un groupe unique, une précision de compétition. Vous vous formez sur la même technologie que celle des championnats barista : stabilité thermique, contrôle fin de l'extraction et une vapeur puissante pour le lait. Un seul groupe, c'est aussi la garantie que chaque participant a un vrai temps de pratique.",
+        "specs": [
+          {
+            "k": "Groupe",
+            "v": "1 groupe, hauteur adaptée aux tasses à emporter"
+          },
+          {
+            "k": "Extraction",
+            "v": "Contrôle précis de la température et du volume"
+          },
+          {
+            "k": "Lait",
+            "v": "Vapeur puissante pour une texture micro-mousse"
+          },
+          {
+            "k": "Usage",
+            "v": "La machine de tous nos cours espresso"
+          }
+        ]
+      },
+      "coffees_section": {
+        "eyebrow": "Nos cafés",
+        "title": "Cafés de spécialité, *torréfiés avec soin*",
+        "intro": "Une sélection courte et tournante de cafés de spécialité, en grains, sachets de 250 g. Retrait à Beaumont ou lors de votre cours. Les références ci-dessous sont un exemple de notre sélection actuelle.",
+        "buy": "Commander",
+        "origin_label": "Origine",
+        "process_label": "Process",
+        "notes_label": "Notes"
+      },
+      "coffees": [
+        {
+          "name": "Éthiopie Yirgacheffe",
+          "origin": "Éthiopie",
+          "process": "Lavé",
+          "notes": "Fleurs blanches, citron, thé noir",
+          "price": "14,50 €",
+          "weight": "250 g",
+          "icon": "flower",
+          "picture": "/images/coffee-1.jpg"
+        },
+        {
+          "name": "Colombie Huila",
+          "origin": "Colombie",
+          "process": "Lavé",
+          "notes": "Caramel, fruits rouges, équilibré",
+          "price": "13,00 €",
+          "weight": "250 g",
+          "icon": "cherry",
+          "picture": "/images/coffee-2.jpg"
+        },
+        {
+          "name": "Brésil Cerrado — Espresso",
+          "origin": "Brésil",
+          "process": "Nature",
+          "notes": "Chocolat, noisette, corps rond",
+          "price": "11,50 €",
+          "weight": "250 g",
+          "icon": "bean",
+          "picture": "/images/coffee-3.jpg"
+        },
+        {
+          "name": "Décaféiné Colombie",
+          "origin": "Colombie",
+          "process": "Sugarcane E.A.",
+          "notes": "Cacao, sucre brun, tout en douceur",
+          "price": "12,50 €",
+          "weight": "250 g",
+          "icon": "moon",
+          "picture": "/images/coffee-4.jpg"
+        }
+      ],
+      "faq_section": {
+        "eyebrow": "Questions fréquentes",
+        "title": "FAQ"
+      },
+      "faq": [
+        {
+          "q": "Où ont lieu les cours ?",
+          "a": "À Beaumont (Rue Orger Meurice 12, 6500 Beaumont), à environ 30 minutes de Mons, Charleroi et de l'OTAN SHAPE. Parking aisé à proximité."
+        },
+        {
+          "q": "Comment réserver une place ?",
+          "a": "Via le formulaire de contact ci-dessous ou directement par WhatsApp. Nous confirmons la date sous 24 h et vous envoyons les détails pratiques."
+        },
+        {
+          "q": "Faut-il de l'expérience ou du matériel ?",
+          "a": "Aucune expérience requise : les cours s'adressent aux amateurs comme aux futurs professionnels. Tout le matériel est fourni, y compris le café. Les cours sont donnés en français, anglais ou néerlandais."
+        },
+        {
+          "q": "Proposez-vous des bons cadeaux ?",
+          "a": "Oui. Un cours barista est un cadeau idéal — contactez-nous et nous préparons un bon cadeau personnalisé."
+        }
+      ],
+      "contact": {
+        "eyebrow": "Réservation",
+        "title": "Réservez votre cours ou *commandez votre café*",
+        "intro": "Dites-nous quel cours ou quel café vous intéresse, et vos disponibilités. Nous revenons vers vous sous 24 h.",
+        "name": "Nom",
+        "email": "E-mail",
+        "interest": "Je suis intéressé(e) par",
+        "interest_options": [
+          "Cours : Maîtriser l'Espresso",
+          "Cours : L'Eau, l'Espresso & le Café Filtre",
+          "Commande de café",
+          "Bon cadeau",
+          "Autre question"
+        ],
+        "message": "Message (dates souhaitées, quantités…)",
+        "send": "Envoyer la demande",
+        "sending": "Envoi…",
+        "success": "Merci ! Votre demande est bien envoyée. Nous vous répondons sous 24 h.",
+        "error": "L'envoi a échoué. Réessayez ou contactez-nous par WhatsApp.",
+        "or": "ou plus rapide encore",
+        "whatsapp": "Réserver via WhatsApp",
+        "details_title": "Coordonnées"
+      },
+      "footer": {
+        "tagline": "Le pôle café d'Évasion Gusto — traiteur & expériences culinaires à Beaumont.",
+        "main_site": "Site traiteur : evasiongusto.be",
+        "rights": "Tous droits réservés.",
+        "motto": "parce que nous aimons le café"
+      },
+      "consent": {
+        "title": "Votre vie privée nous importe",
+        "text": "Nous utilisons des cookies pour améliorer votre expérience, analyser le trafic et vous proposer du contenu pertinent. Vous pouvez choisir ce qui vous convient.",
+        "accept_all": "Accepter tout",
+        "reject_all": "Tout refuser",
+        "manage": "Gérer mes préférences"
+      },
+      "consent_preferences": {
+        "title": "Préférences de confidentialité",
+        "necessary": "Cookies essentiels",
+        "necessary_desc": "Nécessaires pour que le site fonctionne (sécurité, suivi du consentement).",
+        "analytics": "Statistiques & analytics",
+        "analytics_desc": "Nous aider à comprendre comment vous utilisez le site (pages vues, formulaires) via Google Analytics.",
+        "marketing": "Marketing & remarketing",
+        "marketing_desc": "Permettre à Google de vous montrer des annonces pertinentes selon votre visite (Google Ads, YouTube).",
+        "save": "Accepter et fermer",
+        "note": "Vous pouvez modifier ces paramètres à tout moment via le lien en bas de page.",
+        "manage_cookies": "Gérer les cookies",
+        "close": "Fermer sans enregistrer"
+      },
+      "announcement": "Nouveau : cours barista sur Victoria Arduino Prima Pro — réservez votre place",
+      "banner": {
+        "eyebrow": "Bons cadeaux & groupes privés",
+        "title": "Offrez *l'art de l'espresso*",
+        "text": "Un bon cadeau pour un cours barista, ou un atelier privé pour votre équipe ou vos amis — nous organisons des sessions sur mesure.",
+        "cta": "Demander un bon cadeau"
+      }
+    },
+    "en": {
+      "path": "en/",
+      "html_lang": "en",
+      "locale": "en_GB",
+      "title": "Évasion Gusto Coffee — Barista Courses & Specialty Coffee | Beaumont, Mons",
+      "description": "Barista courses on a Victoria Arduino Prima Pro and specialty coffee in Beaumont, near Mons and NATO SHAPE. Master espresso, water and filter coffee. Book your workshop today.",
+      "keywords": "barista course, barista training, specialty coffee, espresso, Victoria Arduino Prima Pro, filter coffee, latte art, Beaumont, Mons, Charleroi, Hainaut, Belgium, Évasion Gusto, coffee workshop",
+      "nav": {
+        "courses": "Courses",
+        "machine": "The Machine",
+        "coffees": "Our Coffees",
+        "faq": "FAQ",
+        "contact": "Book"
+      },
+      "hero": {
+        "eyebrow": "Barista training & specialty coffee — Beaumont, near Mons",
+        "title": "Espresso, from gesture *to cup*.",
+        "sub": "Small-group barista workshops on our Victoria Arduino Prima Pro, plus a curated selection of specialty coffees to take home. By Évasion Gusto.",
+        "cta_courses": "See the courses",
+        "cta_book": "Book a seat"
+      },
+      "courses_section": {
+        "eyebrow": "Our workshops",
+        "title": "Two courses, one goal: *a better cup*",
+        "intro": "Hands-on sessions in small groups (max. 4 people), machine time from start to finish. Every participant leaves with their extraction recipes and a bag of specialty coffee.",
+        "duration_label": "Duration",
+        "price_label": "Price / pers.",
+        "group_label": "Group",
+        "book": "Book this course",
+        "per_person": "per person",
+        "book_online": "Pick a date"
+      },
+      "courses": [
+        {
+          "id": "espresso",
+          "icon": "portafilter",
+          "name": "Mastering Espresso",
+          "tagline": "From bean to the perfect shot",
+          "desc": "Grind, dose, distribution, tamping and extraction: learn to dial in an espresso from scratch on the Victoria Arduino Prima Pro. Reading the cup, adjusting recipes, milk texturing and latte art basics.",
+          "points": [
+            "Dialing in grind and dose",
+            "Extraction recipes (ratio, time, yield)",
+            "Diagnosing under- and over-extraction",
+            "Milk texturing and first patterns"
+          ],
+          "duration": "3 h",
+          "price": "€149",
+          "group": "max. 4",
+          "calcom_event": "mastering-espresso"
+        },
+        {
+          "id": "water",
+          "icon": "drop",
+          "name": "Water, Espresso & Filter Coffee",
+          "tagline": "98% of your cup, finally under control",
+          "desc": "Water makes or breaks a coffee. Minerality, hardness, alkalinity: learn to build your own brew water and measure its real impact, on espresso and filter alike (V60, batch brew), backed by comparative tastings.",
+          "points": [
+            "Water chemistry: TDS, hardness, alkalinity",
+            "Building your own brew water",
+            "Filter methods: V60 and batch brew",
+            "Comparative espresso / filter tasting"
+          ],
+          "duration": "4 h",
+          "price": "€169",
+          "group": "max. 4",
+          "calcom_event": "water-espresso-filter"
+        }
+      ],
+      "machine": {
+        "eyebrow": "Our machine",
+        "title": "Victoria Arduino *Prima Pro*",
+        "desc": "A single group, competition-grade precision. You train on the same technology used on barista championship stages: thermal stability, fine extraction control and powerful steam for milk. One group also means every participant gets real hands-on time.",
+        "specs": [
+          {
+            "k": "Group",
+            "v": "Single group, tall-cup friendly"
+          },
+          {
+            "k": "Extraction",
+            "v": "Precise temperature and volume control"
+          },
+          {
+            "k": "Milk",
+            "v": "Powerful steam for silky microfoam"
+          },
+          {
+            "k": "Role",
+            "v": "The machine behind all our espresso courses"
+          }
+        ]
+      },
+      "coffees_section": {
+        "eyebrow": "Our coffees",
+        "title": "Specialty coffee, *roasted with care*",
+        "intro": "A short, rotating selection of specialty coffees, whole bean, 250 g bags. Pick-up in Beaumont or at your course. The references below are an example of our current selection.",
+        "buy": "Order",
+        "origin_label": "Origin",
+        "process_label": "Process",
+        "notes_label": "Notes"
+      },
+      "coffees": [
+        {
+          "name": "Ethiopia Yirgacheffe",
+          "origin": "Ethiopia",
+          "process": "Washed",
+          "notes": "White flowers, lemon, black tea",
+          "price": "€14.50",
+          "weight": "250 g",
+          "icon": "flower",
+          "picture": "/images/coffee-1.jpg"
+        },
+        {
+          "name": "Colombia Huila",
+          "origin": "Colombia",
+          "process": "Washed",
+          "notes": "Caramel, red fruit, balanced",
+          "price": "€13.00",
+          "weight": "250 g",
+          "icon": "cherry",
+          "picture": "/images/coffee-2.jpg"
+        },
+        {
+          "name": "Brazil Cerrado — Espresso",
+          "origin": "Brazil",
+          "process": "Natural",
+          "notes": "Chocolate, hazelnut, round body",
+          "price": "€11.50",
+          "weight": "250 g",
+          "icon": "bean",
+          "picture": "/images/coffee-3.jpg"
+        },
+        {
+          "name": "Decaf Colombia",
+          "origin": "Colombia",
+          "process": "Sugarcane E.A.",
+          "notes": "Cocoa, brown sugar, gentle",
+          "price": "€12.50",
+          "weight": "250 g",
+          "icon": "moon",
+          "picture": "/images/coffee-4.jpg"
+        }
+      ],
+      "faq_section": {
+        "eyebrow": "Frequently asked",
+        "title": "FAQ"
+      },
+      "faq": [
+        {
+          "q": "Where do the courses take place?",
+          "a": "In Beaumont (Rue Orger Meurice 12, 6500 Beaumont), about 30 minutes from Mons, Charleroi and NATO SHAPE. Easy parking nearby."
+        },
+        {
+          "q": "How do I book a seat?",
+          "a": "Use the contact form below or reach out directly on WhatsApp. We confirm the date within 24 hours and send you the practical details."
+        },
+        {
+          "q": "Do I need experience or equipment?",
+          "a": "No experience required: courses suit enthusiasts and future professionals alike. All equipment is provided, coffee included. Courses are given in French, English or Dutch."
+        },
+        {
+          "q": "Do you offer gift vouchers?",
+          "a": "Yes. A barista course makes an ideal gift — contact us and we'll prepare a personalised voucher."
+        }
+      ],
+      "contact": {
+        "eyebrow": "Booking",
+        "title": "Book your course or *order your coffee*",
+        "intro": "Tell us which course or coffee you're interested in, and your availability. We reply within 24 hours.",
+        "name": "Name",
+        "email": "Email",
+        "interest": "I'm interested in",
+        "interest_options": [
+          "Course: Mastering Espresso",
+          "Course: Water, Espresso & Filter Coffee",
+          "Coffee order",
+          "Gift voucher",
+          "Other question"
+        ],
+        "message": "Message (preferred dates, quantities…)",
+        "send": "Send request",
+        "sending": "Sending…",
+        "success": "Thank you! Your request has been sent. We'll reply within 24 hours.",
+        "error": "Sending failed. Please try again or contact us on WhatsApp.",
+        "or": "or even faster",
+        "whatsapp": "Book via WhatsApp",
+        "details_title": "Contact details"
+      },
+      "footer": {
+        "tagline": "The coffee arm of Évasion Gusto — catering & culinary experiences in Beaumont.",
+        "main_site": "Catering site: evasiongusto.be",
+        "rights": "All rights reserved.",
+        "motto": "because we love coffee"
+      },
+      "consent": {
+        "title": "Your privacy matters",
+        "text": "We use cookies to improve your experience, analyze traffic, and serve relevant content. You can choose what you're comfortable with.",
+        "accept_all": "Accept all",
+        "reject_all": "Reject all",
+        "manage": "Manage preferences"
+      },
+      "consent_preferences": {
+        "title": "Privacy preferences",
+        "necessary": "Essential cookies",
+        "necessary_desc": "Required for the site to function (security, consent tracking).",
+        "analytics": "Analytics & statistics",
+        "analytics_desc": "Help us understand how you use the site (page views, form submissions) via Google Analytics.",
+        "marketing": "Marketing & remarketing",
+        "marketing_desc": "Let Google show you relevant ads based on your visit (Google Ads, YouTube).",
+        "save": "Accept and close",
+        "note": "You can change these settings anytime via the footer link.",
+        "manage_cookies": "Manage cookies",
+        "close": "Close without saving"
+      },
+      "announcement": "New: barista courses on the Victoria Arduino Prima Pro — book your seat",
+      "banner": {
+        "eyebrow": "Gift vouchers & private groups",
+        "title": "Give *the art of espresso*",
+        "text": "A gift voucher for a barista course, or a private workshop for your team or friends — we organise tailor-made sessions.",
+        "cta": "Request a gift voucher"
+      }
+    },
+    "nl": {
+      "path": "nl/",
+      "html_lang": "nl",
+      "locale": "nl_BE",
+      "title": "Évasion Gusto Coffee — Baristacursussen & Specialty Coffee | Beaumont, Bergen",
+      "description": "Baristacursussen op een Victoria Arduino Prima Pro en specialty coffee in Beaumont, nabij Bergen en NAVO SHAPE. Beheers espresso, water en filterkoffie. Reserveer uw workshop.",
+      "keywords": "baristacursus, barista opleiding, specialty coffee, espresso, Victoria Arduino Prima Pro, filterkoffie, latte art, Beaumont, Bergen, Charleroi, Henegouwen, België, Évasion Gusto, koffieworkshop",
+      "nav": {
+        "courses": "Cursussen",
+        "machine": "De Machine",
+        "coffees": "Onze Koffies",
+        "faq": "FAQ",
+        "contact": "Reserveren"
+      },
+      "hero": {
+        "eyebrow": "Baristatraining & specialty coffee — Beaumont, nabij Bergen",
+        "title": "Espresso, van gebaar *tot kop*.",
+        "sub": "Baristaworkshops in kleine groepen op onze Victoria Arduino Prima Pro, plus een selectie specialty coffees om mee naar huis te nemen. Door Évasion Gusto.",
+        "cta_courses": "Bekijk de cursussen",
+        "cta_book": "Reserveer een plaats"
+      },
+      "courses_section": {
+        "eyebrow": "Onze workshops",
+        "title": "Twee cursussen, één doel: *een betere kop*",
+        "intro": "Praktijksessies in kleine groepen (max. 4 personen), met machinetijd van begin tot einde. Elke deelnemer vertrekt met eigen extractierecepten en een zak specialty coffee.",
+        "duration_label": "Duur",
+        "price_label": "Prijs / pers.",
+        "group_label": "Groep",
+        "book": "Reserveer deze cursus",
+        "per_person": "per persoon",
+        "book_online": "Kies een datum"
+      },
+      "courses": [
+        {
+          "id": "espresso",
+          "icon": "portafilter",
+          "name": "Espresso Beheersen",
+          "tagline": "Van boon tot de perfecte shot",
+          "desc": "Maling, dosis, distributie, tampen en extractie: u leert een espresso volledig instellen op de Victoria Arduino Prima Pro. De kop lezen, recepten bijsturen, melk opschuimen en de basis van latte art.",
+          "points": [
+            "Maling en dosis instellen",
+            "Extractierecepten (ratio, tijd, opbrengst)",
+            "Onder- en overextractie herkennen",
+            "Melktextuur en eerste patronen"
+          ],
+          "duration": "3 u",
+          "price": "€ 149",
+          "group": "max. 4",
+          "calcom_event": "mastering-espresso"
+        },
+        {
+          "id": "water",
+          "icon": "drop",
+          "name": "Water, Espresso & Filterkoffie",
+          "tagline": "98% van uw kop, eindelijk onder controle",
+          "desc": "Water maakt of kraakt een koffie. Mineraliteit, hardheid, alkaliniteit: u leert uw eigen brouwwater samenstellen en het echte effect meten, zowel op espresso als op filter (V60, batch brew), met vergelijkende proeverijen.",
+          "points": [
+            "Waterchemie: TDS, hardheid, alkaliniteit",
+            "Uw eigen brouwwater samenstellen",
+            "Filtermethodes: V60 en batch brew",
+            "Vergelijkende proeverij espresso / filter"
+          ],
+          "duration": "4 u",
+          "price": "€ 169",
+          "group": "max. 4",
+          "calcom_event": "water-espresso-filter"
+        }
+      ],
+      "machine": {
+        "eyebrow": "Onze machine",
+        "title": "Victoria Arduino *Prima Pro*",
+        "desc": "Eén groep, precisie op wedstrijdniveau. U traint op dezelfde technologie als op de podia van baristakampioenschappen: thermische stabiliteit, fijne extractiecontrole en krachtige stoom voor melk. Eén groep betekent ook dat elke deelnemer echt hands-on tijd krijgt.",
+        "specs": [
+          {
+            "k": "Groep",
+            "v": "Eén groep, geschikt voor hoge koppen"
+          },
+          {
+            "k": "Extractie",
+            "v": "Precieze temperatuur- en volumecontrole"
+          },
+          {
+            "k": "Melk",
+            "v": "Krachtige stoom voor zijdezachte microschuim"
+          },
+          {
+            "k": "Rol",
+            "v": "De machine achter al onze espressocursussen"
+          }
+        ]
+      },
+      "coffees_section": {
+        "eyebrow": "Onze koffies",
+        "title": "Specialty coffee, *met zorg gebrand*",
+        "intro": "Een korte, wisselende selectie specialty coffees, hele bonen, zakken van 250 g. Afhaling in Beaumont of tijdens uw cursus. Onderstaande referenties zijn een voorbeeld van onze huidige selectie.",
+        "buy": "Bestellen",
+        "origin_label": "Herkomst",
+        "process_label": "Proces",
+        "notes_label": "Smaaknoten"
+      },
+      "coffees": [
+        {
+          "name": "Ethiopië Yirgacheffe",
+          "origin": "Ethiopië",
+          "process": "Gewassen",
+          "notes": "Witte bloemen, citroen, zwarte thee",
+          "price": "€ 14,50",
+          "weight": "250 g",
+          "icon": "flower",
+          "picture": "/images/coffee-1.jpg"
+        },
+        {
+          "name": "Colombia Huila",
+          "origin": "Colombia",
+          "process": "Gewassen",
+          "notes": "Karamel, rood fruit, evenwichtig",
+          "price": "€ 13,00",
+          "weight": "250 g",
+          "icon": "cherry",
+          "picture": "/images/coffee-2.jpg"
+        },
+        {
+          "name": "Brazilië Cerrado — Espresso",
+          "origin": "Brazilië",
+          "process": "Natural",
+          "notes": "Chocolade, hazelnoot, volle body",
+          "price": "€ 11,50",
+          "weight": "250 g",
+          "icon": "bean",
+          "picture": "/images/coffee-3.jpg"
+        },
+        {
+          "name": "Decaf Colombia",
+          "origin": "Colombia",
+          "process": "Sugarcane E.A.",
+          "notes": "Cacao, bruine suiker, zacht",
+          "price": "€ 12,50",
+          "weight": "250 g",
+          "icon": "moon",
+          "picture": "/images/coffee-4.jpg"
+        }
+      ],
+      "faq_section": {
+        "eyebrow": "Veelgestelde vragen",
+        "title": "FAQ"
+      },
+      "faq": [
+        {
+          "q": "Waar vinden de cursussen plaats?",
+          "a": "In Beaumont (Rue Orger Meurice 12, 6500 Beaumont), op ongeveer 30 minuten van Bergen, Charleroi en NAVO SHAPE. Vlot parkeren in de buurt."
+        },
+        {
+          "q": "Hoe reserveer ik een plaats?",
+          "a": "Via het contactformulier hieronder of rechtstreeks via WhatsApp. Wij bevestigen de datum binnen 24 uur en sturen u de praktische details."
+        },
+        {
+          "q": "Heb ik ervaring of materiaal nodig?",
+          "a": "Geen ervaring vereist: de cursussen zijn geschikt voor liefhebbers én toekomstige professionals. Al het materiaal is voorzien, koffie inbegrepen. De cursussen worden gegeven in het Frans, Engels of Nederlands."
+        },
+        {
+          "q": "Bieden jullie cadeaubonnen aan?",
+          "a": "Ja. Een baristacursus is een ideaal geschenk — neem contact op en wij maken een gepersonaliseerde cadeaubon."
+        }
+      ],
+      "contact": {
+        "eyebrow": "Reservering",
+        "title": "Reserveer uw cursus of *bestel uw koffie*",
+        "intro": "Laat ons weten welke cursus of koffie u interesseert, en uw beschikbaarheid. Wij antwoorden binnen 24 uur.",
+        "name": "Naam",
+        "email": "E-mail",
+        "interest": "Ik ben geïnteresseerd in",
+        "interest_options": [
+          "Cursus: Espresso Beheersen",
+          "Cursus: Water, Espresso & Filterkoffie",
+          "Koffiebestelling",
+          "Cadeaubon",
+          "Andere vraag"
+        ],
+        "message": "Bericht (gewenste data, hoeveelheden…)",
+        "send": "Aanvraag versturen",
+        "sending": "Versturen…",
+        "success": "Bedankt! Uw aanvraag is verzonden. Wij antwoorden binnen 24 uur.",
+        "error": "Versturen mislukt. Probeer opnieuw of contacteer ons via WhatsApp.",
+        "or": "of nog sneller",
+        "whatsapp": "Reserveren via WhatsApp",
+        "details_title": "Contactgegevens"
+      },
+      "footer": {
+        "tagline": "De koffietak van Évasion Gusto — catering & culinaire ervaringen in Beaumont.",
+        "main_site": "Cateringsite: evasiongusto.be",
+        "rights": "Alle rechten voorbehouden.",
+        "motto": "omdat we van koffie houden"
+      },
+      "consent": {
+        "title": "Uw privacy is belangrijk",
+        "text": "We gebruiken cookies om uw ervaring te verbeteren, verkeer te analyseren en relevante inhoud aan te bieden. U kunt kiezen wat u aanstaat.",
+        "accept_all": "Alles accepteren",
+        "reject_all": "Alles weigeren",
+        "manage": "Voorkeuren beheren"
+      },
+      "consent_preferences": {
+        "title": "Privacyvoorkeuren",
+        "necessary": "Essentiële cookies",
+        "necessary_desc": "Nodig voor de werking van de site (beveiliging, toestemmingsregistratie).",
+        "analytics": "Analytics & statistieken",
+        "analytics_desc": "Ons helpen begrijpen hoe u de site gebruikt (paginaweergaven, formulieren) via Google Analytics.",
+        "marketing": "Marketing & remarketing",
+        "marketing_desc": "Laat Google u relevante advertenties tonen op basis van uw bezoek (Google Ads, YouTube).",
+        "save": "Accepteren en sluiten",
+        "note": "U kunt deze instellingen op elk moment wijzigen via de link in de voettekst.",
+        "manage_cookies": "Cookies beheren",
+        "close": "Sluiten zonder op te slaan"
+      },
+      "announcement": "Nieuw: baristacursussen op de Victoria Arduino Prima Pro — reserveer uw plaats",
+      "banner": {
+        "eyebrow": "Cadeaubonnen & privégroepen",
+        "title": "Geef *de kunst van espresso* cadeau",
+        "text": "Een cadeaubon voor een baristacursus, of een privéworkshop voor uw team of vrienden — wij organiseren sessies op maat.",
+        "cta": "Vraag een cadeaubon aan"
+      }
+    }
+  }
+}
