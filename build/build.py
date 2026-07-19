@@ -414,7 +414,6 @@ def footer(L):
   <div class="consent-prefs-panel">
     <div class="consent-prefs-head">
       <h2 id="prefs-title">{e(prefs.get("title", "Privacy preferences"))}</h2>
-      <button class="consent-close" data-close-prefs aria-label="Close" title="Close">×</button>
     </div>
     <div class="consent-prefs-body">
       <div class="consent-pref-group">
@@ -447,7 +446,6 @@ def footer(L):
     </div>
     <div class="consent-prefs-footer">
       <button class="btn btn-solid" data-save-prefs>{e(prefs.get("save", "Accept and close"))}</button>
-      <button class="btn btn-close" data-close-prefs>{e(prefs.get("close", "Close without saving"))}</button>
       <p class="consent-prefs-note">{e(prefs.get("note", "You can change these settings anytime via the footer link."))}</p>
     </div>
   </div>
