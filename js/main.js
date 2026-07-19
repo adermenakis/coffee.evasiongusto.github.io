@@ -6,13 +6,6 @@
   var CONSENT_VERSION = 1;
   var CONSENT_KEY = "eg-coffee-consent-v" + CONSENT_VERSION;
 
-  // Detect current language
-  function getCurrentLang() {
-    if (window.location.pathname.startsWith("/en/")) return "en";
-    if (window.location.pathname.startsWith("/nl/")) return "nl";
-    return "fr";
-  }
-
   // Get stored consent
   function getStoredConsent() {
     try {
@@ -60,8 +53,15 @@
     }
   }
 
+  // Detect current language
+  function getCurrentLang() {
+    if (window.location.pathname.startsWith("/en/")) return "en";
+    if (window.location.pathname.startsWith("/nl/")) return "nl";
+    return "fr";
+  }
+
   // Initialize on DOM ready
-  function init() {
+  function initConsent() {
     var banner = document.querySelector(".consent");
     var modal = document.querySelector(".consent-preferences-modal");
 
@@ -149,77 +149,10 @@
 
   // Wait for DOM
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init, false);
+    document.addEventListener("DOMContentLoaded", initConsent, false);
   } else {
-    init();
+    initConsent();
   }
-
-  // Preferences modal (if it exists)
-  var prefsModal = document.querySelector(".consent-preferences-modal");
-  var prefsOverlay = document.querySelector(".consent-prefs-overlay");
-  
-  function openPreferencesModal() {
-    if (prefsModal) {
-      var consent = getConsent() || defaultConsent; // pre-checked by default
-      var analyticsChk = document.querySelector("[data-pref-analytics]");
-      var marketingChk = document.querySelector("[data-pref-marketing]");
-      if (analyticsChk) analyticsChk.checked = consent.analytics;
-      if (marketingChk) marketingChk.checked = consent.marketing;
-      prefsModal.hidden = false;
-    }
-  }
-
-  function closePreferencesModal() {
-    if (prefsModal) prefsModal.hidden = true;
-  }
-
-  // Close button
-  var closePrefsBtn = document.querySelector("[data-close-prefs]");
-  if (closePrefsBtn) {
-    closePrefsBtn.addEventListener("click", closePreferencesModal);
-  }
-
-  // Save button
-  var savePrefsBtn = document.querySelector("[data-save-prefs]");
-  if (savePrefsBtn) {
-    savePrefsBtn.addEventListener("click", function () {
-      var analytics = document.querySelector("[data-pref-analytics]");
-      var marketing = document.querySelector("[data-pref-marketing]");
-      setConsent({
-        necessary: true,
-        analytics: analytics && analytics.checked,
-        marketing: marketing && marketing.checked
-      });
-      closePreferencesModal();
-      if (consentBox) consentBox.hidden = true;
-    });
-  }
-
-  // Overlay click to close
-  if (prefsOverlay) {
-    prefsOverlay.addEventListener("click", closePreferencesModal);
-  }
-
-  // ESC key to close modal
-  document.addEventListener("keydown", function (ev) {
-    if (ev.key === "Escape" && !prefsModal.hidden) {
-      closePreferencesModal();
-    }
-  });
-
-  // Footer "manage cookies" link
-  var manageCookiesLinks = document.querySelectorAll("[data-open-prefs]");
-  if (manageCookiesLinks) {
-    manageCookiesLinks.forEach(function (link) {
-      link.addEventListener("click", function (ev) {
-        ev.preventDefault();
-        openPreferencesModal();
-      });
-    });
-  }
-
-  // Apply only a previously SAVED choice — no tags load before the user clicks
-  if (storedConsent) applyConsent(storedConsent);
 
   /* ---------- Hero background video ---------- */
   var vid = document.querySelector(".hero-video");
