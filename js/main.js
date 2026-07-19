@@ -62,15 +62,26 @@
 
   // Initialize on DOM ready
   function initConsent() {
+    console.log("🔍 initConsent() called");
     var banner = document.querySelector(".consent");
     var modal = document.querySelector(".consent-preferences-modal");
 
-    if (!banner) return;
+    console.log("Banner found:", !!banner);
+    console.log("Modal found:", !!modal);
+
+    if (!banner) {
+      console.error("❌ Banner not found!");
+      return;
+    }
 
     // Show banner only if no consent stored
     var stored = getStoredConsent();
+    console.log("Stored consent:", stored);
     if (!stored || stored.version !== CONSENT_VERSION) {
+      console.log("✅ Showing banner (no consent stored)");
       banner.hidden = false;
+    } else {
+      console.log("ℹ️ Banner hidden (consent already exists)");
     }
 
     // Mark active language
@@ -83,8 +94,10 @@
 
     // Banner: Accept All
     var acceptBtn = banner.querySelector('[data-consent="accept-all"]');
+    console.log("Accept button found:", !!acceptBtn);
     if (acceptBtn) {
       acceptBtn.addEventListener("click", function(e) {
+        console.log("✅ Accept button clicked!");
         e.preventDefault();
         e.stopPropagation();
         saveConsent(true, true);
@@ -94,8 +107,10 @@
 
     // Banner: Reject All
     var rejectBtn = banner.querySelector('[data-consent="reject-all"]');
+    console.log("Reject button found:", !!rejectBtn);
     if (rejectBtn) {
       rejectBtn.addEventListener("click", function(e) {
+        console.log("✅ Reject button clicked!");
         e.preventDefault();
         e.stopPropagation();
         saveConsent(false, false);
@@ -105,8 +120,10 @@
 
     // Banner: Manage Preferences
     var manageBtn = banner.querySelector('[data-consent="preferences"]');
+    console.log("Manage button found:", !!manageBtn);
     if (manageBtn && modal) {
       manageBtn.addEventListener("click", function(e) {
+        console.log("✅ Manage button clicked!");
         e.preventDefault();
         e.stopPropagation();
         var s = getStoredConsent() || { analytics: true, marketing: true };
