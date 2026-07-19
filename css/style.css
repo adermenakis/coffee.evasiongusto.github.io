@@ -80,12 +80,17 @@ em.accent{font-style:italic;color:var(--oak);font-weight:460}
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--hair);
 }
 .site-header.scrolled{border-bottom-color:var(--hair-strong)}
-.nav-wrap{display:flex;align-items:center;gap:1.5rem;min-height:72px}
-.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none}
-.brand img{width:42px;height:42px}
-.brand-word{
+.nav-wrap{display:flex;align-items:center;gap:1.5rem;min-height:100px}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex:none}
+.brand-logo-text{display:flex;align-items:center;gap:.5rem}
+.brand img{width:80px;height:80px}
+.brand-label{
   font-family:var(--font-display);font-style:italic;font-weight:460;
-  font-size:1.3rem;color:var(--noir);letter-spacing:.02em;
+  font-size:1.1rem;color:var(--oak);letter-spacing:.02em;white-space:nowrap;
+}
+@media(max-width:768px){
+  .brand img{width:60px;height:60px}
+  .brand-label{font-size:.95rem}
 }
 .main-nav{margin-left:auto}
 .main-nav ul{display:flex;gap:1.8rem;list-style:none;margin:0;padding:0;align-items:center}
@@ -371,13 +376,14 @@ footer [data-open-prefs]{font-size:.92rem}
 
 /* ---------- responsive ---------- */
 @media (max-width:900px){
+  .nav-wrap{min-height:auto}
   .hero-grid,.machine-grid,.contact-grid{grid-template-columns:1fr}
   .hero-grid{padding-top:3.5rem;gap:3rem}
   .hero-art{order:-1}
   .brew{width:min(230px,68vw)}
   .lang-switch{margin-left:auto}
   .main-nav{
-    position:fixed;inset:72px 0 auto 0;background:var(--white);margin:0;
+    position:fixed;inset:100px 0 auto 0;background:var(--white);margin:0;
     transform:translateY(-130%);transition:transform .3s ease;border-bottom:1px solid var(--hair-strong);
   }
   .main-nav.open{transform:none}

@@ -188,8 +188,10 @@ def nav(L, code):
     return ann + f'''<header class="site-header" id="top">
   <div class="wrap nav-wrap">
     <a class="brand" href="/{L["path"]}" aria-label="Évasion Gusto Coffee">
-      <img src="{SITE["logo"]}" alt="Évasion Gusto" width="46" height="46" loading="eager">
-      <span class="brand-word">Coffee</span>
+      <div class="brand-logo-text">
+        <span class="brand-label">Coffee by</span>
+        <img src="{SITE["logo"]}" alt="Évasion Gusto" width="80" height="80" loading="eager">
+      </div>
     </a>
     <nav class="main-nav" aria-label="Main">
       <ul>{links}<li><a class="nav-cta" href="#contact">{e(n["contact"])}</a></li></ul>
