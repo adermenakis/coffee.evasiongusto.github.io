@@ -3,6 +3,7 @@
    Scandinavian minimal: white, hairlines, no rounded corners.
    Palette: noir / oak brown / white + tints
    ============================================================ */
+[hidden]{display:none!important}
 :root{
   --noir:#17110C;
   --oak:#7C5432;
