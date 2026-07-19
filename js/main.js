@@ -7,6 +7,10 @@
   var consentBox = document.querySelector(".consent");
   var consentVersion = 1;
 
+  // Determine current language from page path
+  var currentLang = window.location.pathname.startsWith("/en/") ? "en" :
+                    window.location.pathname.startsWith("/nl/") ? "nl" : "fr";
+
   // Default: all disabled until user accepts
   var defaultConsent = {
     necessary: true,     // always on (for tracking consent itself, security)
@@ -61,23 +65,40 @@
     if (consentBox) consentBox.hidden = false;
   }
 
+  // Mark active language in consent language switcher
+  var consentLangLinks = consentBox ? consentBox.querySelectorAll("[data-lang]") : [];
+  consentLangLinks.forEach(function (link) {
+    if (link.getAttribute("data-lang") === currentLang) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
+
   // Banner interactions: accept all, reject all, manage preferences
   if (consentBox) {
-    consentBox.addEventListener("click", function (ev) {
-      var btn = ev.target.closest("[data-consent]");
-      if (!btn) return;
-      var action = btn.getAttribute("data-consent");
-      
-      if (action === "accept-all") {
+    // Direct button click handlers for better reliability
+    var acceptBtn = consentBox.querySelector("[data-consent='accept-all']");
+    var rejectBtn = consentBox.querySelector("[data-consent='reject-all']");
+    var prefsBtn = consentBox.querySelector("[data-consent='preferences']");
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener("click", function () {
         setConsent({ necessary: true, analytics: true, marketing: true });
         consentBox.hidden = true;
-      } else if (action === "reject-all") {
+      });
+    }
+    if (rejectBtn) {
+      rejectBtn.addEventListener("click", function () {
         setConsent({ necessary: true, analytics: false, marketing: false });
         consentBox.hidden = true;
-      } else if (action === "preferences") {
+      });
+    }
+    if (prefsBtn) {
+      prefsBtn.addEventListener("click", function () {
         openPreferencesModal();
-      }
-    });
+      });
+    }
   }
 
   // Preferences modal (if it exists)

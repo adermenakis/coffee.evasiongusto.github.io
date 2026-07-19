@@ -388,8 +388,18 @@ def footer(L):
 <!-- GDPR Consent Banner -->
 <div class="consent" hidden role="dialog" aria-labelledby="consent-title">
   <div class="consent-content">
-    <h3 id="consent-title">{e(c.get("title", "Your privacy matters"))}</h3>
-    <p>{e(c.get("text", "We use cookies to improve your experience, analyze traffic, and serve relevant content. You can choose what you're comfortable with."))}</p>
+    <div class="consent-header">
+      <div>
+        <h3 id="consent-title">{e(c.get("title", "Your privacy matters"))}</h3>
+        <p>{e(c.get("text", "We use cookies to improve your experience, analyze traffic, and serve relevant content. You can choose what you're comfortable with."))}</p>
+      </div>
+      <div class="consent-lang-switcher" role="navigation" aria-label="Languages in consent">
+        <svg class="icn icn-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c-4.5 4.7-4.5 12.3 0 17 4.5-4.7 4.5-12.3 0-17Z"/></svg>
+        <a href="/" class="consent-lang" hreflang="fr" lang="fr" data-lang="fr">FR</a>
+        <a href="/en/" class="consent-lang" hreflang="en" lang="en" data-lang="en">EN</a>
+        <a href="/nl/" class="consent-lang" hreflang="nl" lang="nl" data-lang="nl">NL</a>
+      </div>
+    </div>
     <div class="consent-buttons">
       <button class="btn btn-sm btn-solid" data-consent="accept-all">{e(c.get("accept_all", "Accept all"))}</button>
       <button class="btn btn-sm btn-line" data-consent="reject-all">{e(c.get("reject_all", "Reject all"))}</button>
@@ -418,7 +428,7 @@ def footer(L):
       </div>
       <div class="consent-pref-group">
         <label class="pref-label">
-          <input type="checkbox" data-pref-analytics class="pref-check">
+          <input type="checkbox" checked data-pref-analytics class="pref-check">
           <div>
             <strong>{e(prefs.get("analytics", "Analytics"))}</strong>
             <p>{e(prefs.get("analytics_desc", "Help us understand how you use the site (page views, form submissions) via Google Analytics."))}</p>
@@ -427,7 +437,7 @@ def footer(L):
       </div>
       <div class="consent-pref-group">
         <label class="pref-label">
-          <input type="checkbox" data-pref-marketing class="pref-check">
+          <input type="checkbox" checked data-pref-marketing class="pref-check">
           <div>
             <strong>{e(prefs.get("marketing", "Marketing & remarketing"))}</strong>
             <p>{e(prefs.get("marketing_desc", "Let Google show you relevant ads based on your visit (Google Ads, YouTube)."))}</p>
